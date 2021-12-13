@@ -16,15 +16,17 @@ public abstract class GameTimer implements Timer {
     private final ElfRoyalPlugin plugin;
     @Getter
     private BukkitTask timerTask;
+    private boolean async = true;
 
     private final int topTime;
     @Getter
     private int time = 0;
     private final TimeTickType timeTickType;
 
-    public GameTimer(ElfRoyalPlugin plugin, int time, TimeTickType timeTickType) {
+    public GameTimer(ElfRoyalPlugin plugin, int time, TimeTickType timeTickType, boolean async) {
         this.plugin = plugin;
         this.topTime = time;
+        this.async = async;
         if (timeTickType == TimeTickType.DOWN) {
             this.time = time;
         }
@@ -48,12 +50,17 @@ public abstract class GameTimer implements Timer {
             } else {
                 if (time <= 0) {
                     stop();
+                    if (!async) {
+                        Bukkit.getScheduler().runTask(plugin, this::whenComplete);
+                        return;
+                    }
                     whenComplete();
                     return;
                 }
                 time--;
             }
         }, 0, 20);
+
     }
 
     @Override
