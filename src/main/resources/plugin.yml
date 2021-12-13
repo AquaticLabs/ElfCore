@@ -1,0 +1,6 @@
+name: ElfRoyal
+version: ${project.version}
+main: com.aquaticlabsdev.elfroyal.ElfRoyal
+api-version: 1.18
+authors: [ AquaticLabs ]
+description: Core of ElfRoyal Event
