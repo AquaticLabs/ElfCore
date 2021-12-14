@@ -32,7 +32,7 @@ public class GamePlacements {
     }
 
     public UUID getByPlacement(int placement) {
-        UUID uuid = byValueMap.get(placement);
+        UUID uuid = byValueMap.get(placement-1);
         return uuid;
     }
 

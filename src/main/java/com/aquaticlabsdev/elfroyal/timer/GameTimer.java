@@ -2,6 +2,7 @@ package com.aquaticlabsdev.elfroyal.timer;
 
 import com.aquaticlabsdev.elfroyal.ElfRoyalPlugin;
 import lombok.Getter;
+import lombok.Setter;
 import org.bukkit.Bukkit;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -15,13 +16,12 @@ public abstract class GameTimer implements Timer {
 
     private final ElfRoyalPlugin plugin;
     @Getter
-    private BukkitTask timerTask;
-    private boolean async = true;
+    public BukkitTask timerTask;
+    public boolean async = true;
 
-    private final int topTime;
-    @Getter
-    private int time = 0;
-    private final TimeTickType timeTickType;
+    public final int topTime;
+    public int time = 0;
+    public final TimeTickType timeTickType;
 
     public GameTimer(ElfRoyalPlugin plugin, int time, TimeTickType timeTickType, boolean async) {
         this.plugin = plugin;
