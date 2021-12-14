@@ -21,6 +21,8 @@ public interface GameMap {
 
     void load();
 
+    void delete();
+
     Selection getMapBounds();
 
     Map<LocationType, List<Location>> getLocationList();

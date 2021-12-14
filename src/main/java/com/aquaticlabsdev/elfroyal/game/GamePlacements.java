@@ -3,7 +3,6 @@ package com.aquaticlabsdev.elfroyal.game;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.UUID;
