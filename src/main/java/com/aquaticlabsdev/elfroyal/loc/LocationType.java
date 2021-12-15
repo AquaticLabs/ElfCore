@@ -11,6 +11,7 @@ public enum LocationType {
     SPAWN,
     SPECTATOR,
     BASE,
+    RING,
     LOBBY,
 
 

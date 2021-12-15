@@ -15,12 +15,13 @@ public abstract class ObjectTimer implements Timer {
 
     private final ElfRoyalPlugin plugin;
     @Getter
-    private BukkitTask timerTask;
+    public BukkitTask timerTask;
+    public boolean async = true;
 
-    private final int topTime;
+    public final int topTime;
     @Getter
-    private int time = 0;
-    private final TimeTickType timeTickType;
+    public int time = 0;
+    public final TimeTickType timeTickType;
 
     public ObjectTimer(ElfRoyalPlugin plugin, int time, TimeTickType timeTickType) {
         this.plugin = plugin;
@@ -58,13 +59,11 @@ public abstract class ObjectTimer implements Timer {
 
     @Override
     public void stop() {
-        this.timerTask.cancel();
+        if (this.timerTask != null) this.timerTask.cancel();
     }
 
 
     public abstract void whenComplete();
-
-
 
 
 }

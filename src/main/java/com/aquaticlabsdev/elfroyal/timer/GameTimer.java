@@ -65,7 +65,7 @@ public abstract class GameTimer implements Timer {
 
     @Override
     public void stop() {
-        this.timerTask.cancel();
+        if (this.timerTask != null) this.timerTask.cancel();
     }
 
 
