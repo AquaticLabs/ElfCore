@@ -23,6 +23,15 @@ public abstract class ObjectTimer implements Timer {
     public int time = 0;
     public final TimeTickType timeTickType;
 
+    public ObjectTimer(ElfRoyalPlugin plugin, int time, TimeTickType timeTickType, boolean async) {
+        this.plugin = plugin;
+        this.topTime = time;
+        this.async = async;
+        if (timeTickType == TimeTickType.DOWN) {
+            this.time = time;
+        }
+        this.timeTickType = timeTickType;
+    }
     public ObjectTimer(ElfRoyalPlugin plugin, int time, TimeTickType timeTickType) {
         this.plugin = plugin;
         this.topTime = time;
@@ -41,14 +50,21 @@ public abstract class ObjectTimer implements Timer {
 
                 if (time >= topTime) {
                     stop();
-                    whenComplete();
-                    return;
+                    if (!async) {
+                        Bukkit.getScheduler().runTask(plugin, this::whenComplete);
+                        return;
+                    }
+                    whenComplete();                    return;
                 }
 
                 time++;
             } else {
                 if (time <= 0) {
                     stop();
+                    if (!async) {
+                        Bukkit.getScheduler().runTask(plugin, this::whenComplete);
+                        return;
+                    }
                     whenComplete();
                     return;
                 }
